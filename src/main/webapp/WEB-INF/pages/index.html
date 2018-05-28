@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layout :: head"></head>
+<body>
+<h3>Customers</h3>
+<p>
+    <a th:href="@{/pruduct/create}">
+        Add new customer
+    </a>
+</p>
+<div class="notify">
+    <div th:if="${success}">
+        <span th:text="${superccess}"></span>
+    </div>
+</div>
+<table id = "customers">
+    <thead>
+    <tr>
+        <th>Name</th>
+        <th>Price</th>
+        <th>Made</th>
+        <th>Edit</th>
+        <th>Delete</th>
+        <th>View</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="row,rowStat : ${list}">
+        <td th:text="${row.getName()}"></td>
+        <td th:text="${row.getPrice()}"></td>
+        <td th:text="${row.getMade()}"></td>
+        <td><a th:href="@{/product/edit/{id}(id=${row.getId()})}">edit</a></td>
+        <td><a th:href="@{/product/delete/{id}(id=${row.getId()})}">delete</a></td>
+        <td><a th:href="@{/product/info/{id}(id=${row.getId()})}">view</a></td>
+    </tr>
+    </tbody>
+</table>
+<footer th:replace="layout :: footer"></footer>
+</body>
+</html>
+
+
